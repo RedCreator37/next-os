@@ -63,6 +63,11 @@ void terminal_writestring(const char* data)  {
 	terminal_write(data, strlen(data));
 }
 
+void terminal_newline(unsigned long &current_row, unsigned long &current_col) {
+    current_row++;
+    current_col = 0;
+}
+
 // deprecated
 //void print_str(char *str, unsigned char color) {
 //    int index = 0;
@@ -86,10 +91,10 @@ int main() {
 
     terminal_color = vga_put_color(VGA_YELLOW, VGA_BLACK);
     terminal_writestring("Hello World! This is a custom os kernel!");
-    terminal_row = 1;
+    terminal_newline(terminal_row, terminal_column);
     terminal_color = vga_put_color(VGA_BRIGHT_GREEN, VGA_BLACK);
     terminal_writestring("Hello Again!");
-    terminal_row = 2;
+    terminal_newline(terminal_row, terminal_column);
 
     //vga_index = 0;
     //print_str("Hello World! This is a custom operating system kernel, written by RedCreator37.", VGA_YELLOW);
