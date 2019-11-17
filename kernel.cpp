@@ -76,7 +76,6 @@ void terminal_writestring(const char* data)  {
 void init_terminal() {
     terminal_row = 0;
     terminal_column = 0;
-    terminal_color = vga_put_color(VGA_YELLOW, VGA_BLACK);
     terminal_buffer = (unsigned short *)VGA_ADDRESS;
     clr_scr();
 }
@@ -85,7 +84,10 @@ int main() {
     // todo: change
     init_terminal();
 
-    terminal_writestring("Hello World! This is a custom os kernel!\nHello Again!");
+    terminal_color = vga_put_color(VGA_YELLOW, VGA_BLACK);
+    terminal_writestring("Hello World! This is a custom os kernel!\n");
+    terminal_color = vga_put_color(VGA_BRIGHT_GREEN, VGA_BLACK);
+    terminal_writestring("Hello Again!\n");
 
     //vga_index = 0;
     //print_str("Hello World! This is a custom operating system kernel, written by RedCreator37.", VGA_YELLOW);
