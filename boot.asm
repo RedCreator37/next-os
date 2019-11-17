@@ -11,10 +11,15 @@ extern main                     ;defined in C source
 
 start:
         cli                     ;block interrupts
-        mov esp, stack_space    ;set stack pointer
+        ;mov esp, stack_space    ;set stack pointer
+        mov esp, stack_top
         call main
         hlt                     ;halt the CPU (when done running main)
 
-section .bss
-resb 8192
-stack_space:
+section .bss    ; align stack
+;resb 8192
+;stack_space:
+align 16
+stack_bottom:
+resb 16384 ; 16 KiB
+stack_top:

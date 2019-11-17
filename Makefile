@@ -31,4 +31,3 @@ iso: kernel
 .PHONY: clean
 clean:
 	$(RM) *.o $(BIN) *iso
-
