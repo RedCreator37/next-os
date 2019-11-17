@@ -25,7 +25,7 @@ int main() {
     out_string("OK\n");
     terminal_setcolor(VGA_BRIGHT_RED, VGA_BLACK);
     out_string("Goodbye!");
-    move_cursor(9, 10);
+    move_cursor(9, 9);
 
     return 0;
 }
