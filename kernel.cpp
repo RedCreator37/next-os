@@ -8,6 +8,13 @@
 int main() {
     init_terminal();
 
+    out_string(" ███╗   ██╗ ███████╗ ██╗  ██╗ ████████╗  ██████╗  ███████╗ \n");
+    out_string(" ████╗  ██║ ██╔════╝ ╚██╗██╔╝ ╚══██╔══╝ ██╔═══██╗ ██╔════╝ \n");
+    out_string(" ██╔██╗ ██║ █████╗    ╚███╔╝     ██║    ██║   ██║ ███████╗ \n");
+    out_string(" ██║╚██╗██║ ██╔══╝    ██╔██╗     ██║    ██║   ██║ ╚════██║ \n");
+    out_string(" ██║ ╚████║ ███████╗ ██╔╝ ██╗    ██║    ╚██████╔╝ ███████║ \n");
+    out_string(" ╚═╝  ╚═══╝ ╚══════╝ ╚═╝  ╚═╝    ╚═╝     ╚═════╝  ╚══════╝ \n");
+
     // print the hello world message
     terminal_setcolor(VGA_YELLOW, VGA_BLACK);
     out_string("Hello World! This is a custom operating system kernel, written by RedCreator37.\n");
