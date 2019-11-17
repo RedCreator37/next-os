@@ -1,3 +1,5 @@
+; NEXTOS Bootstrapper
+; 2019-11-16 by RedCreator37
 bits 32
 
 section .multiboot              ;accordint to multiboot spec
