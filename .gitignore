@@ -1,0 +1,7 @@
+# vscode stuff
+.vscode
+
+# objects
+*.o
+*.iso
+
