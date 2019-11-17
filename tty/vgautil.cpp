@@ -9,6 +9,17 @@ unsigned long terminal_row;
 unsigned long terminal_column;
 unsigned char terminal_color;
 
+// Common
+
+// calculate length of a string
+unsigned long strlen(const char* str) {
+    unsigned long len = 0;
+    while (str[len]) len++;
+    return len;
+}
+
+// Display initialization, etc.
+
 // clear the screen
 void clr_scr() {
     int index = 0;
@@ -27,14 +38,18 @@ void init_terminal() {
     clr_scr();
 }
 
-// set the color
-void terminal_setcolor(int fg, int bg) {
-    terminal_color = fg | bg << 4;
-}
+// Character display
 
 // put together the character
 unsigned short vga_entry(unsigned char uc, unsigned char color)  {
     return (unsigned short)uc | (unsigned short)color << 8;
+}
+
+// Terminal routines
+
+// set the color
+void terminal_setcolor(int fg, int bg) {
+    terminal_color = fg | bg << 4;
 }
 
 // put the character at the specified location, use the specified color
@@ -59,19 +74,12 @@ void terminal_put_char(char c)  {
     }
 }
 
-// calculate length of a string
-unsigned long strlen(const char* str) {
-    unsigned long len = 0;
-    while (str[len]) len++;
-    return len;
-}
-
 // break a string into characters to display
 void terminal_write(const char* data, unsigned long size)  {
     for (unsigned long i = 0; i < size; i++)
         terminal_put_char(data[i]);
 }
- 
+
 // simplified way of displaying a string
 void out_string(const char* data)  {
     terminal_write(data, strlen(data));
