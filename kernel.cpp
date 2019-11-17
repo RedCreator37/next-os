@@ -1,8 +1,9 @@
 // A simple x86 operating system kernel
 // kernel.cpp - main source file
 // 2019-11-16 by RedCreator37
-#include "vgadef.hpp"
-#include "vgautil.hpp"
+#include "tty/vgadef.hpp"
+#include "tty/vgautil.hpp"
+#include "tty/vgacur.hpp"
 
 // entry point
 int main() {
@@ -24,6 +25,7 @@ int main() {
     out_string("OK\n");
     terminal_setcolor(VGA_BRIGHT_RED, VGA_BLACK);
     out_string("Goodbye!");
+    move_cursor(9, 10);
 
     return 0;
 }

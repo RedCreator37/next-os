@@ -4,6 +4,7 @@
 #ifndef vgautil
 #define vgautil
 
+// todo: clean up this section
 void clr_scr();
 void init_terminal();
 void terminal_setcolor(int bg, int fg);

@@ -9,8 +9,8 @@ ISO_PATH := iso
 BOOT_PATH := $(ISO_PATH)/boot
 GRUB_PATH := $(BOOT_PATH)/grub
 
-SOURCES := vgautil.cpp
-OBJECTS := vgautil.o
+SOURCES := tty/vgautil.cpp tty/bios.cpp tty/vgacur.cpp
+OBJECTS := tty/vgautil.o tty/bios.o tty/vgacur.o
 
 .PHONY: all bootloader objects linker iso
 all: bootloader kernel linker iso
