@@ -34,13 +34,13 @@ void terminal_setcolor(int fg, int bg) {
 
 // put together the character
 unsigned short vga_entry(unsigned char uc, unsigned char color)  {
-	return (unsigned short)uc | (unsigned short)color << 8;
+    return (unsigned short)uc | (unsigned short)color << 8;
 }
 
 // put the character at the specified location, use the specified color
 void terminal_put_at(char c, unsigned char color, unsigned long x, unsigned long y)  {
-	const unsigned long index = y * VGA_WIDTH + x;
-	terminal_buffer[index] = vga_entry(c, color);
+    const unsigned long index = y * VGA_WIDTH + x;
+    terminal_buffer[index] = vga_entry(c, color);
 }
 
 // parse the characters (handles newlines)
@@ -51,28 +51,28 @@ void terminal_put_char(char c)  {
         return;
     }
 
-	terminal_put_at(c, terminal_color, terminal_column, terminal_row);
-	if (++terminal_column == VGA_WIDTH) {
-		terminal_column = 0;
-		if (++terminal_row == VGA_HEIGHT)
-			terminal_row = 0;
-	}
+    terminal_put_at(c, terminal_color, terminal_column, terminal_row);
+    if (++terminal_column == VGA_WIDTH) {
+        terminal_column = 0;
+        if (++terminal_row == VGA_HEIGHT)
+            terminal_row = 0;
+    }
 }
 
 // calculate length of a string
 unsigned long strlen(const char* str) {
-	unsigned long len = 0;
-	while (str[len]) len++;
-	return len;
+    unsigned long len = 0;
+    while (str[len]) len++;
+    return len;
 }
 
 // break a string into characters to display
 void terminal_write(const char* data, unsigned long size)  {
-	for (unsigned long i = 0; i < size; i++)
-		terminal_put_char(data[i]);
+    for (unsigned long i = 0; i < size; i++)
+        terminal_put_char(data[i]);
 }
  
 // simplified way of displaying a string
 void out_string(const char* data)  {
-	terminal_write(data, strlen(data));
+    terminal_write(data, strlen(data));
 }
