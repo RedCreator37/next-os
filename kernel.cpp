@@ -10,7 +10,7 @@ int main() {
     init_terminal();
 
 	terminal_setcolor(VGA_WHITE, VGA_BLACK);
-    out_string("    _   _________  ____________   _____        ___  \n");
+    out_string("    _   _________  ____________   _____        ___      \n");
     out_string("   / | / / ____/ |/ /_  __/ __ \\/ ___/   _   _<  /     \n");
     out_string("  /  |/ / __/  |   / / / / / / /\\__ \\   | | / / /     \n");
     out_string(" / /|  / /___ /   | / / / /_/ /___/ /   | |/ / /        \n");
