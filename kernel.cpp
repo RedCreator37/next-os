@@ -4,7 +4,6 @@
 #include "vgadef.hpp"
 
 unsigned short *terminal_buffer;
-//unsigned int vga_index;
 unsigned long terminal_row;
 unsigned long terminal_column;
 unsigned char terminal_color;
@@ -45,7 +44,10 @@ void terminal_putchar(char c)  {
 		terminal_column = 0;
 		if (++terminal_row == VGA_HEIGHT)
 			terminal_row = 0;
-	}
+	} else if (c == '\n') {
+        terminal_column = 0;
+        terminal_row = 0;
+    }
 }
 
 unsigned long strlen(const char* str) {
@@ -68,16 +70,7 @@ void terminal_newline(unsigned long &current_row, unsigned long &current_col) {
     current_col = 0;
 }
 
-// deprecated
-//void print_str(char *str, unsigned char color) {
-//    int index = 0;
-//    while (str[index]) {
-//        terminal_buffer[vga_index] = (unsigned short)str[index] | (unsigned short)color << 8;
-//        index++;
-//        vga_index++;
-//    }
-//}
-
+// initialize the terminal buffer
 void init_terminal() {
     terminal_row = 0;
     terminal_column = 0;
@@ -85,16 +78,16 @@ void init_terminal() {
     clr_scr();
 }
 
+// entry point
 int main() {
-    // todo: change
     init_terminal();
 
     terminal_color = vga_put_color(VGA_YELLOW, VGA_BLACK);
-    terminal_writestring("Hello World! This is a custom os kernel!");
-    terminal_newline(terminal_row, terminal_column);
+    terminal_writestring("Hello World! This is a custom os kernel!\n");
+    //terminal_newline(terminal_row, terminal_column);
     terminal_color = vga_put_color(VGA_BRIGHT_GREEN, VGA_BLACK);
     terminal_writestring("Hello Again!");
-    terminal_newline(terminal_row, terminal_column);
+    //terminal_newline(terminal_row, terminal_column);
 
     //vga_index = 0;
     //print_str("Hello World! This is a custom operating system kernel, written by RedCreator37.", VGA_YELLOW);
