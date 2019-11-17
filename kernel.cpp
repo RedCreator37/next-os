@@ -45,8 +45,8 @@ void terminal_putchar(char c)  {
 		if (++terminal_row == VGA_HEIGHT)
 			terminal_row = 0;
 	} else if (c == '\n') {
+        terminal_row++;
         terminal_column = 0;
-        terminal_row = 0;
     }
 }
 
