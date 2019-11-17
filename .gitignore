@@ -4,4 +4,6 @@
 # objects
 *.o
 *.iso
+kernel
+iso
 
