@@ -30,6 +30,7 @@ void move_cursor(int x, int y) {
 }
 
 // get the cursor position
+// to get x, y: y = pos / VGA_WIDTH; x = pos % VGA_WIDTH;
 unsigned short get_cursor_position() {
     unsigned short pos = 0;
     outb(0x3D4, 0x0F);
