@@ -3,13 +3,11 @@
 // 2019-11-16 by RedCreator37
 #include "vgadef.hpp"
 
-// initialize the terminal buffer
-void init_terminal() {
-    terminal_row = 0;
-    terminal_column = 0;
-    terminal_buffer = (unsigned short *)VGA_ADDRESS;
-    clr_scr();
-}
+// current values
+unsigned short *terminal_buffer;
+unsigned long terminal_row;
+unsigned long terminal_column;
+unsigned char terminal_color;
 
 // clear the screen
 void clr_scr() {
@@ -21,14 +19,17 @@ void clr_scr() {
     }
 }
 
-// parse color values
-unsigned char vga_put_color(int fg, int bg)  {
-	return fg | bg << 4;
+// initialize the terminal buffer
+void init_terminal() {
+    terminal_row = 0;
+    terminal_column = 0;
+    terminal_buffer = (unsigned short *)VGA_ADDRESS;
+    clr_scr();
 }
 
 // set the color
-void terminal_setcolor(unsigned char color) {
-	terminal_color = color;
+void terminal_setcolor(int fg, int bg) {
+    terminal_color = fg | bg << 4;
 }
 
 // put together the character

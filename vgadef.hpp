@@ -8,14 +8,8 @@
 #define VGA_ADDRESS 0xB8000
 
 // display properties
-static const unsigned long VGA_WIDTH = 80;
-static const unsigned long VGA_HEIGHT = 25;
-
-// current values
-unsigned short *terminal_buffer;
-unsigned long terminal_row;
-unsigned long terminal_column;
-unsigned char terminal_color;
+const unsigned long VGA_WIDTH = 80;
+const unsigned long VGA_HEIGHT = 25;
 
 // all 16 VGA colors
 enum VGA_COLOR {

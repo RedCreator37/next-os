@@ -1,6 +1,7 @@
 CP := cp
 RM := rm -rf
 MKDIR := mkdir -pv
+CXX := g++
 
 BIN = kernel
 CFG = grub.cfg
@@ -8,18 +9,24 @@ ISO_PATH := iso
 BOOT_PATH := $(ISO_PATH)/boot
 GRUB_PATH := $(BOOT_PATH)/grub
 
-.PHONY: all
+SOURCES := vgautil.cpp
+OBJECTS := vgautil.o
+
+.PHONY: all bootloader objects linker iso
 all: bootloader kernel linker iso
 	@echo Make has completed.
 
 bootloader: boot.asm
 	nasm -f elf32 boot.asm -o boot.o
 
-kernel: kernel.c
-	g++ -m32 -c kernel.cpp -o kernel.o
+objects:
+	$(CXX) -m32 -c $(SOURCES)
+
+kernel: kernel.cpp objects
+	$(CXX) -m32 -c kernel.cpp -o kernel.o
 
 linker: linker.ld boot.o kernel.o
-	ld -m elf_i386 -T linker.ld -o kernel boot.o kernel.o
+	ld -m elf_i386 -T linker.ld -o kernel boot.o $(OBJECTS) kernel.o
 
 iso: kernel
 	$(MKDIR) $(GRUB_PATH)
