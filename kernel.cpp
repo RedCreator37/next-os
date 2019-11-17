@@ -85,9 +85,11 @@ int main() {
     init_terminal();
 
     terminal_color = vga_put_color(VGA_YELLOW, VGA_BLACK);
-    terminal_writestring("Hello World! This is a custom os kernel!\n");
+    terminal_writestring("Hello World! This is a custom os kernel!");
+    terminal_row = 1;
     terminal_color = vga_put_color(VGA_BRIGHT_GREEN, VGA_BLACK);
-    terminal_writestring("Hello Again!\n");
+    terminal_writestring("Hello Again!");
+    terminal_row = 2;
 
     //vga_index = 0;
     //print_str("Hello World! This is a custom operating system kernel, written by RedCreator37.", VGA_YELLOW);
