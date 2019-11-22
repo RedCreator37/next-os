@@ -4,7 +4,7 @@
 #ifndef vgautil
 #define vgautil
 
-// common
+// general
 unsigned long strlen(const char* str);
 
 // display initialization, etc.

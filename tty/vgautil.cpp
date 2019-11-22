@@ -9,7 +9,7 @@ unsigned long terminal_row;
 unsigned long terminal_column;
 unsigned char terminal_color;
 
-// Common
+// General
 
 // calculate length of a string
 unsigned long strlen(const char* str) {
@@ -22,7 +22,7 @@ unsigned long strlen(const char* str) {
 
 // clear the screen
 void clr_scr() {
-    int index = 0;
+    unsigned int index = 0;
     // 25 lines by 80 columns, each element takes 2 bytes
     while (index < VGA_WIDTH * VGA_HEIGHT * 2) {
         terminal_buffer[index] = ' ';

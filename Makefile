@@ -9,24 +9,24 @@ ISO_PATH := iso
 BOOT_PATH := $(ISO_PATH)/boot
 GRUB_PATH := $(BOOT_PATH)/grub
 
-SOURCES := tty/vgautil.cpp tty/bios.cpp tty/vgacur.cpp
-OBJECTS := vgautil.o bios.o vgacur.o
+SRC := tty/vgautil.cpp tty/bios.cpp tty/vgacur.cpp
+OBJ := vgautil.o bios.o vgacur.o
 
-.PHONY: all bootloader objects linker iso
+.PHONY: all bootloader objects linker iso clean
 all: bootloader kernel linker iso
-	@echo Make has completed.
+	@echo Done.
 
 bootloader: boot.asm
 	nasm -f elf32 boot.asm -o boot.o
 
 objects:
-	$(CXX) -m32 -c $(SOURCES)
+	$(CXX) -m32 -c $(SRC)
 
 kernel: kernel.cpp objects
 	$(CXX) -m32 -c kernel.cpp -o kernel.o
 
 linker: linker.ld boot.o kernel.o
-	ld -m elf_i386 -T linker.ld -o kernel boot.o $(OBJECTS) kernel.o
+	ld -m elf_i386 -T linker.ld -o kernel boot.o $(OBJ) kernel.o
 
 iso: kernel
 	$(MKDIR) $(GRUB_PATH)
@@ -35,6 +35,5 @@ iso: kernel
 	grub-file --is-x86-multiboot $(BOOT_PATH)/$(BIN)
 	grub-mkrescue -o nextos-v1.iso $(ISO_PATH)
 
-.PHONY: clean
 clean:
-	$(RM) *.o $(BIN) *iso
+	-$(RM) *.o $(BIN) *iso
