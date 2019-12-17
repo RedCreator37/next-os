@@ -1,3 +1,5 @@
+; NEXTOS Interrupt Handling
+; 2019-12-17 by RedCreator37
 global irq0
 global irq1
 global irq2
