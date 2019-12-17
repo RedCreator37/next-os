@@ -3,9 +3,9 @@
 bits 32
 
 section .multiboot              ;according to multiboot specs
-        dd 0x1BADB002           ;set magic number for bootloader
-        dd 0x0                  ;set flags
-        dd - (0x1BADB002 + 0x0) ;set checksum
+        dd 0x1BADB002           ;magic number for bootloader
+        dd 0x0                  ;flags
+        dd - (0x1BADB002 + 0x0) ;checksum (stop if not 0)
 
 section .text
 global start
@@ -56,5 +56,5 @@ start:
 section .bss                    ;align stack
 align 16
 stack_bottom:
-resb 16384                      ;16 KiB
+resb 16384                      ;16 KiB for stack
 stack_top:

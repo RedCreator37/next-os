@@ -5,7 +5,7 @@
 #include "bios.hpp"
 
 // initialize the IDT table (see itd.asm)
-void idt_init(void) {
+void init_idt(void) {
     extern int load_idt();
     extern int irq0();
     extern int irq1();
@@ -176,7 +176,7 @@ void idt_init(void) {
     load_idt();
 }
 
-// basic IRQ handlers -- called from assembly code
+// basic IRQ handlers -- called from idt.asm
 
 void irq0_handler(void) {
     outb(0x20, 0x20); //EOI

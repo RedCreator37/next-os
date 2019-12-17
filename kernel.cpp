@@ -4,9 +4,11 @@
 #include "tty/vgadef.hpp"
 #include "tty/vgautil.hpp"
 #include "tty/vgacur.hpp"
+#include "io/int.cpp"
 
 // entry point
 int main() {
+    init_idt(); // interrupt handler
     init_terminal();
 	terminal_setcolor(VGA_WHITE, VGA_BLACK);
     out_string("    _   _________  ____________   _____        ___      \n");
