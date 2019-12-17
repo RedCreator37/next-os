@@ -12,7 +12,7 @@ struct IDT_entry {
 	unsigned char type_attr;
 	unsigned short int offset_higherbits;
 };
- 
+
 struct IDT_entry IDT[256];
 
 #endif
