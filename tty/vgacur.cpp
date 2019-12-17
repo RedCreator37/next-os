@@ -2,7 +2,7 @@
 // vgacur.cpp - bios cursor handling
 // 2019-11-16 by RedCreator37
 #include "vgadef.hpp"
-#include "bios.hpp"
+#include "../io/bios.hpp"
 
 // enable the cursor
 void enable_cursor(unsigned char cursor_start, unsigned char cursor_end) {
