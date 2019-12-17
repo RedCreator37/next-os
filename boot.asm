@@ -5,7 +5,7 @@ bits 32
 section .multiboot              ;according to multiboot specs
         dd 0x1BADB002           ;magic number for bootloader
         dd 0x0                  ;flags
-        dd - (0x1BADB002 + 0x0) ;checksum (stop if not 0)
+        dd - (0x1BADB002 + 0x0) ;checksum (should be exactly 0)
 
 section .text
 global start
