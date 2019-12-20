@@ -19,39 +19,39 @@ global irq15
 
 global load_idt
 
-;global irq0_handler    ;nasm doesn't let you do double initialization...
-;global irq1_handler
-;global irq2_handler
-;global irq3_handler
-;global irq4_handler
-;global irq5_handler
-;global irq6_handler
-;global irq7_handler
-;global irq8_handler
-;global irq9_handler
-;global irq10_handler
-;global irq11_handler
-;global irq12_handler
-;global irq13_handler
-;global irq14_handler
-;global irq15_handler
+global irq0_handler
+global irq1_handler
+global irq2_handler
+global irq3_handler
+global irq4_handler
+global irq5_handler
+global irq6_handler
+global irq7_handler
+global irq8_handler
+global irq9_handler
+global irq10_handler
+global irq11_handler
+global irq12_handler
+global irq13_handler
+global irq14_handler
+global irq15_handler
 
-extern irq0_handler
-extern irq1_handler
-extern irq2_handler
-extern irq3_handler
-extern irq4_handler
-extern irq5_handler
-extern irq6_handler
-extern irq7_handler
-extern irq8_handler
-extern irq9_handler
-extern irq10_handler
-extern irq11_handler
-extern irq12_handler
-extern irq13_handler
-extern irq14_handler
-extern irq15_handler
+;extern irq0_handler    ;nasm doesn't let you do double initialization...
+;extern irq1_handler
+;extern irq2_handler
+;extern irq3_handler
+;extern irq4_handler
+;extern irq5_handler
+;extern irq6_handler
+;extern irq7_handler
+;extern irq8_handler
+;extern irq9_handler
+;extern irq10_handler
+;extern irq11_handler
+;extern irq12_handler
+;extern irq13_handler
+;extern irq14_handler
+;extern irq15_handler
 
 irq0:
     pusha
