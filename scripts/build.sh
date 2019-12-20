@@ -1,5 +1,6 @@
 #!/bin/bash
 # Builds and links the test kernel
+# DEPRECATED: use make instead
 
 # boot.asm
 nasm -f elf32 boot.asm -o boot.o
