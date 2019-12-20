@@ -6,9 +6,9 @@
 #include "tty/vgacur.hpp"
 #include "io/int.cpp"
 
-// entry point
+// entry point - called from boot.asm
 int main() {
-    init_idt(); // interrupt handler
+    init_idt(); // initialize the interrupt handlers
     init_terminal();
 	terminal_setcolor(VGA_WHITE, VGA_BLACK);
     out_string("    _   _________  ____________   _____        ___      \n");
@@ -18,7 +18,6 @@ int main() {
     out_string("/_/ |_/_____//_/|_|/_/  \\____//____/    |___/_/        \n\n");
 	out_string("Starting NEXTOS v1.0... Hold on...\n\n");
 
-    // print the hello world message
     terminal_setcolor(VGA_YELLOW, VGA_BLACK);
     out_string("Hello World! This is a custom operating system kernel, written by RedCreator37.\n");
     out_string("Status: ");

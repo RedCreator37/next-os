@@ -4,7 +4,7 @@
 #include "vgadef.hpp"
 
 // current values
-unsigned short *terminal_buffer;
+unsigned short* terminal_buffer;
 unsigned long terminal_row;
 unsigned long terminal_column;
 unsigned char terminal_color;
@@ -34,14 +34,14 @@ void clr_scr() {
 void init_terminal() {
     terminal_row = 0;
     terminal_column = 0;
-    terminal_buffer = (unsigned short *)VGA_ADDRESS;
+    terminal_buffer = (unsigned short*)VGA_ADDRESS;
     clr_scr();
 }
 
 // Character display
 
 // put together the character
-unsigned short vga_entry(unsigned char uc, unsigned char color)  {
+unsigned short vga_entry(unsigned char uc, unsigned char color) {
     return (unsigned short)uc | (unsigned short)color << 8;
 }
 
@@ -53,13 +53,13 @@ void terminal_setcolor(int fg, int bg) {
 }
 
 // put the character at the specified location, use the specified color
-void terminal_put_at(char c, unsigned char color, unsigned long x, unsigned long y)  {
+void terminal_put_at(char c, unsigned char color, unsigned long x, unsigned long y) {
     const unsigned long index = y * VGA_WIDTH + x;
     terminal_buffer[index] = vga_entry(c, color);
 }
 
 // parse the characters (handles newlines)
-void terminal_put_char(char c)  {
+void terminal_put_char(char c) {
     if (c == '\n') {
         terminal_row++;
         terminal_column = 0;
@@ -75,12 +75,12 @@ void terminal_put_char(char c)  {
 }
 
 // break a string into characters to display
-void terminal_write(const char* data, unsigned long size)  {
+void terminal_write(const char* data, unsigned long size) {
     for (unsigned long i = 0; i < size; i++)
         terminal_put_char(data[i]);
 }
 
 // simplified way of displaying a string
-void out_string(const char* data)  {
+void out_string(const char* data) {
     terminal_write(data, strlen(data));
 }
