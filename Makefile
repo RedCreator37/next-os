@@ -1,7 +1,9 @@
 CP := cp
 RM := rm -rf
+LD := ld
 MKDIR := mkdir -pv
 CXX := g++
+ASM := nasm
 
 BIN = kernel
 CFG = grub.cfg
@@ -17,17 +19,17 @@ all: bootloader kernel linker iso
 	@echo Done.
 
 bootloader: boot.asm
-	nasm -f elf32 boot.asm -o boot.o
+	$(ASM) -f elf32 boot.asm -o boot.o
 
 objects:
 	$(CXX) -m32 -c $(SRC)
-	nasm -f elf32 ./io/idt.asm -o ./io/idt.o
+	$(ASM) -f elf32 ./io/idt.asm -o ./io/idt.o
 
 kernel: kernel.cpp objects
 	$(CXX) -m32 -c kernel.cpp -o kernel.o
 
 linker: linker.ld boot.o kernel.o
-	ld -m elf_i386 -T linker.ld -o kernel boot.o ./io/idt.o $(OBJ) kernel.o
+	$(LD) -m elf_i386 -T linker.ld -o kernel boot.o ./io/idt.o $(OBJ) kernel.o
 
 iso: kernel
 	$(MKDIR) $(GRUB_PATH)
