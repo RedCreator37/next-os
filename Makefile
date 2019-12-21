@@ -5,8 +5,8 @@ MKDIR := mkdir -pv
 CXX := g++
 ASM := nasm
 
-BIN = kernel
-CFG = grub.cfg
+BIN := kernel
+CFG := grub.cfg
 ISO_PATH := iso
 BOOT_PATH := $(ISO_PATH)/boot
 GRUB_PATH := $(BOOT_PATH)/grub
