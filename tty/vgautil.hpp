@@ -4,7 +4,12 @@
 #ifndef vgautil
 #define vgautil
 
-// general
+// general (find a better place for these)
+#define NULL 0
+#define TRUE 1
+#define FALSE 0
+typedef unsigned int size_t;
+
 unsigned long strlen(const char* str);
 
 // display initialization, etc.
