@@ -18,12 +18,12 @@ OBJ := vgautil.o bios.o vgacur.o
 all: bootloader kernel linker iso
 	@echo Done.
 
-bootloader: boot.asm
+bootloader: boot.asm ./io/idt.asm
 	$(ASM) -f elf32 boot.asm -o boot.o
+	$(ASM) -f elf32 ./io/idt.asm -o ./io/idt.o
 
 objects:
 	$(CXX) -m32 -c $(SRC)
-	$(ASM) -f elf32 ./io/idt.asm -o ./io/idt.o
 
 kernel: kernel.cpp objects
 	$(CXX) -m32 -c kernel.cpp -o kernel.o
