@@ -18,7 +18,7 @@ OBJ := vgautil.o bios.o vgacur.o
 all: bootloader kernel linker iso
 	@echo Done.
 
-bootloader: boot.asm ./io/idt.asm
+bootloader: boot.asm
 	$(ASM) -f elf32 boot.asm -o boot.o
 
 objects:
