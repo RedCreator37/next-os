@@ -4,11 +4,11 @@
 #include "tty/vgadef.hpp"
 #include "tty/vgautil.hpp"
 #include "tty/vgacur.hpp"
-#include "io/int.cpp"
+//#include "io/int.cpp"
 
 // entry point - called from boot.asm
 int main() {
-    init_idt(); // initialize the interrupt handlers
+    //init_idt(); // initialize the interrupt handlers
     init_terminal();
 	terminal_setcolor(VGA_WHITE, VGA_BLACK);
     out_string("    _   _________  ____________   _____        ___      \n");

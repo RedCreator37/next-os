@@ -11,7 +11,7 @@ ISO_PATH := iso
 BOOT_PATH := $(ISO_PATH)/boot
 GRUB_PATH := $(BOOT_PATH)/grub
 
-SRC := io/bios.cpp io/int.cpp tty/vgautil.cpp tty/vgacur.cpp
+SRC := io/bios.cpp tty/vgautil.cpp tty/vgacur.cpp
 OBJ := vgautil.o bios.o vgacur.o
 
 .PHONY: all bootloader objects linker iso clean
@@ -20,7 +20,6 @@ all: bootloader kernel linker iso
 
 bootloader: boot.asm ./io/idt.asm
 	$(ASM) -f elf32 boot.asm -o boot.o
-	$(ASM) -f elf32 ./io/idt.asm -o ./io/idt.o
 
 objects:
 	$(CXX) -m32 -c $(SRC)
@@ -29,7 +28,7 @@ kernel: kernel.cpp objects
 	$(CXX) -m32 -c kernel.cpp -o kernel.o
 
 linker: linker.ld boot.o kernel.o
-	$(LD) -m elf_i386 -T linker.ld -o kernel boot.o ./io/idt.o $(OBJ) kernel.o
+	$(LD) -m elf_i386 -T linker.ld -o kernel boot.o $(OBJ) kernel.o
 
 iso: kernel
 	$(MKDIR) $(GRUB_PATH)
