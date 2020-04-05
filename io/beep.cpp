@@ -1,4 +1,4 @@
-// // A simple x86 operating system kernel
+// A simple x86 operating system kernel
 // beep.cpp - preliminary testing of the PC chassis speaker operations
 // 2020-01-24 by RedCreator37
 #include "bios.hpp"
@@ -26,7 +26,7 @@ static void nosound() {
 }
 
 // send a beep signal to the chassis speaker
-void beep() {
+static void beep() {
     play_sound(1000);
     //timer_wait(10); fix the interrupts then enable this
     nosound();

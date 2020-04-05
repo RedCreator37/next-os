@@ -2,6 +2,7 @@
 // vgautil.cpp - display routines
 // 2019-11-16 by RedCreator37
 #include "vgadef.hpp"
+#include "beep.hpp"
 
 // current values
 unsigned short* terminal_buffer;
@@ -63,23 +64,27 @@ void terminal_put_at(char c, unsigned char color, unsigned long x, unsigned long
 
 // parse the characters (handles escape sequences)
 void terminal_put_char(char c) {
-    if (c == '\n') {
+    switch(c) {
+    case '\n':  // newline
         terminal_row++;
         terminal_column = 0;
-        return;
-    } else if (c == '\t') { // vert. tab
+        break;
+    case '\t':  // horiz. tab
         terminal_column += 8;
-        return;
-    } else if (c == '\r') { // carriage return
-        terminal_row = 0;
-        return;
-    }
-
-    terminal_put_at(c, terminal_color, terminal_column, terminal_row);
-    if (++terminal_column == VGA_WIDTH) {
-        terminal_column = 0;
-        if (++terminal_row == VGA_HEIGHT)
-            terminal_row = 0;       // todo: re-draw all the text (a.k.a. do proper scrolling)
+        break;
+    case '\r':  // carriage return
+        terminal_row++;
+        break;
+    case '\a':  // alert, bell
+        play_sound(400);
+        break;
+    deafult:
+        terminal_put_at(c, terminal_color, terminal_column, terminal_row);
+        if (++terminal_column == VGA_WIDTH) {
+            terminal_column = 0;
+            if (++terminal_row == VGA_HEIGHT)
+                terminal_row = 0;       // todo: re-draw all the text (a.k.a. do proper scrolling)
+        }
     }
 }
 
