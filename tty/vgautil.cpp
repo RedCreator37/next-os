@@ -9,6 +9,9 @@ unsigned long terminal_row;
 unsigned long terminal_column;
 unsigned char terminal_color;
 
+// for scrolling
+char *scroll_buffer[VGA_HEIGHT];
+
 // General
 
 // calculate length of a string
@@ -58,11 +61,17 @@ void terminal_put_at(char c, unsigned char color, unsigned long x, unsigned long
     terminal_buffer[index] = vga_entry(c, color);
 }
 
-// parse the characters (handles newlines)
+// parse the characters (handles escape sequences)
 void terminal_put_char(char c) {
     if (c == '\n') {
         terminal_row++;
         terminal_column = 0;
+        return;
+    } else if (c == '\t') { // vert. tab
+        terminal_column += 8;
+        return;
+    } else if (c == '\r') { // carriage return
+        terminal_row = 0;
         return;
     }
 
@@ -70,12 +79,13 @@ void terminal_put_char(char c) {
     if (++terminal_column == VGA_WIDTH) {
         terminal_column = 0;
         if (++terminal_row == VGA_HEIGHT)
-            terminal_row = 0;
+            terminal_row = 0;       // todo: re-draw all the text (a.k.a. do proper scrolling)
     }
 }
 
 // break a string into characters to display
 void terminal_write(const char* data, unsigned long size) {
+    scroll_buffer[terminal_row++] = (char*)data;
     for (unsigned long i = 0; i < size; i++)
         terminal_put_char(data[i]);
 }
